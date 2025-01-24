@@ -27,6 +27,29 @@ internal class Program
                 string category = Console.ReadLine();
                 Console.WriteLine("How many do you have?");
                 string quantity = Console.ReadLine();
+
+                int quant;
+                while (true)
+                {
+                    try
+                    {
+                        quant = int.Parse(quantity);
+                        if (quant < 0)
+                        {
+                            Console.WriteLine("Please enter a positive number");
+                            quantity = Console.ReadLine();
+                            continue;
+                        }
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"{e.Message}");
+                        Console.WriteLine("How many do you have? Please insert a positive integer");
+                        quantity = Console.ReadLine();
+                    }
+                }
+
                 Console.WriteLine("When does the food item expire?");
                 string expdate = Console.ReadLine();
 
@@ -38,7 +61,7 @@ internal class Program
             // Delete food item from list
             else if (choice == 2)
             {
-                Console.WriteLine("Which food item would you like to delete?");
+                
                 if (list.Count == 0)
                 {
                     Console.WriteLine("There are no food items in your list!");
@@ -46,8 +69,9 @@ internal class Program
 
                 else
                 {
-                    for(int i = 0; i < list.Count; i++)
-                {
+                    Console.WriteLine("Which food item would you like to delete?");
+                    for (int i = 0; i < list.Count; i++)
+                    {
                         Console.WriteLine((i + 1).ToString() + ": " + list[i].Name);
                     }
                     int num = int.Parse(Console.ReadLine());
@@ -60,7 +84,7 @@ internal class Program
             {
                 for (int i = 0; i < list.Count; i++)
                 {
-                    Console.WriteLine((i+1).ToString() + ": " + list[i].Name);
+                    Console.WriteLine((i + 1).ToString() + ": " + list[i].Name + " belong to the category " + list[i].Cat + ". You have " + list[i].Quantity + " that expire on " + list[i].ExpDate);
                 }
             }
 
