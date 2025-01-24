@@ -9,11 +9,11 @@ internal class Program
         List<FoodItem> list = new List<FoodItem>();
         while (exit)
         {            
-            Console.WriteLine("What would you like to do?");
+            Console.WriteLine("\nWhat would you like to do?\n");
             Console.WriteLine("1. Add food items");
             Console.WriteLine("2. Delete food items");
             Console.WriteLine("3. Print list of food items:");
-            Console.WriteLine("4. Exit the program");
+            Console.WriteLine("4. Exit the program\n");
             Console.WriteLine("Please enter your option:");
 
             int choice = int.Parse(Console.ReadLine());
@@ -39,12 +39,20 @@ internal class Program
             else if (choice == 2)
             {
                 Console.WriteLine("Which food item would you like to delete?");
-                for (int i = 0; i < list.Count; i++)
+                if (list.Count == 0)
                 {
-                    Console.WriteLine((i+1).ToString() + ": " + list[i].Name);
+                    Console.WriteLine("There are no food items in your list!");
                 }
-                int num = int.Parse(Console.ReadLine());
-                list.Remove(list[num-1]);
+
+                else
+                {
+                    for(int i = 0; i < list.Count; i++)
+                {
+                        Console.WriteLine((i + 1).ToString() + ": " + list[i].Name);
+                    }
+                    int num = int.Parse(Console.ReadLine());
+                    list.Remove(list[num - 1]);
+                }
             }
 
             // Print list of items
@@ -62,6 +70,10 @@ internal class Program
                 exit = false;
             }
 
+            else
+            {
+                Console.WriteLine("Invalid choice! Please try again.");
+            }
         }
     }
 }
